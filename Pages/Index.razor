@@ -7,19 +7,16 @@
 
 <div class="main">
     <ul class="pizza-cards">
-        @if (specials != null)
+        @foreach (var special in specials ?? new())
         {
-            @foreach (var special in specials)
-            {
-                <li @onclick="@(() => OrderState.ShowConfigurePizzaDialog(special))"
-            style="background-image: url('@special.ImageUrl')">
-                    <div class="pizza-info">
-                        <span class="title">@special.Name</span>
-                        @special.Description
-                        <span class="price">@special.GetFormattedBasePrice()</span>
-                    </div>
-                </li>
-            }
+            <li @onclick="@(() => OrderState.ShowConfigurePizzaDialog(special))"
+                style="background-image: url('@special.ImageUrl')">
+                <div class="pizza-info">
+                    <span class="title">@special.Name</span>
+                    @special.Description
+                    <span class="price">@special.GetFormattedBasePrice()</span>
+                </div>
+            </li>
         }
     </ul>
 </div>
@@ -27,8 +24,8 @@
 @if (OrderState.ShowingConfigureDialog)
 {
     <ConfigurePizzaDialog Pizza="OrderState.ConfiguringPizza"
-                      OnCancel="OrderState.CancelConfigurePizzaDialog"
-                      OnConfirm="OrderState.ConfirmConfigurePizzaDialog" />
+        OnCancel="OrderState.CancelConfigurePizzaDialog"
+        OnConfirm="OrderState.ConfirmConfigurePizzaDialog" />
 }
 
 <div class="sidebar @(order.Pizzas.Any() ? "with-total" : "")">
@@ -74,7 +71,7 @@
         specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(
             $"{NavigationManager.BaseUri}specials");
 
-    private async Task RemovePizzaConfirmation(Pizza removePizza)
+    async Task RemovePizzaConfirmation(Pizza removePizza)
     {
         var messageParams = new
         {

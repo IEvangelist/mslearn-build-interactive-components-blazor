@@ -70,7 +70,7 @@
     protected override Task OnAfterRenderAsync(bool firstRender) =>
         firstRender ? StartPollingTimerAsync() : Task.CompletedTask;
 
-    private async Task GetLatestOrderStatusUpdatesAsync()
+    async Task GetLatestOrderStatusUpdatesAsync()
     {
         try
         {
@@ -84,7 +84,7 @@
         }
     }
 
-    private async Task StartPollingTimerAsync()
+    async Task StartPollingTimerAsync()
     {
         while (IsOrderIncomplete && await timer.WaitForNextTickAsync())
         {
