@@ -74,7 +74,7 @@
         specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(
             $"{NavigationManager.BaseUri}specials");
 
-    private async Task RemovePizzaConfirmation(Pizza removePizza)
+    async Task RemovePizzaConfirmation(Pizza removePizza)
     {
         var messageParams = new
         {
