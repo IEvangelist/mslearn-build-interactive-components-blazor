@@ -770,3 +770,13 @@ input[type=range] {
         transform: translateX(500px);
     }
 }
+
+a:not(:disabled):hover {
+    cursor: pointer;
+}
+
+.page-item.disabled > a.page-link > span {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+    filter: brightness(80%);
+}

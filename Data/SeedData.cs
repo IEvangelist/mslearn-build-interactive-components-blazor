@@ -64,7 +64,7 @@ internal static class SeedData
             new()
             {
                 Id = 9,
-                Name = "Margherita Family FixedSize",
+                Name = "Margherita Family Size",
                 Description = """24" of pure tomatoes and basil""",
                 BasePrice = 14.99m,
                 ImageUrl = "img/pizzas/margherita.jpg",
